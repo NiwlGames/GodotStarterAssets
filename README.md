@@ -1,4 +1,4 @@
-# GodotStarterAssets
+# Godot Starter Assets
 An expanding collection of high quality assets for the Godot engine made by [Niwl Games](https://niwl.games). At the moment it contains:
 
 - First person controller.
@@ -9,4 +9,4 @@ The controllers aim to be totally FPS independent and as responsive as possible.
 
 This assets were developed using Godot 4.5.1.
 
-Niwl Games is a cooperative. In order for us to continue the development of free and open source assets, consider supporting us on [Patreon](https://www.patreon.com/c/Shipyard).
+Niwl Games is a cooperative. In order to continue the development of free and open source assets, consider supporting us on [Patreon](https://www.patreon.com/c/Shipyard).
