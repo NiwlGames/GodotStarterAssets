@@ -35,6 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 [node name="Pitch" type="Node3D" parent="CameraGimbal/Yaw"]
 
 [node name="Camera" type="Camera3D" parent="CameraGimbal/Yaw/Pitch"]
+current = true
 
 [node name="Reticle" type="ColorRect" parent="CameraGimbal/Yaw/Pitch/Camera"]
 material = ExtResource("2_irgtj")

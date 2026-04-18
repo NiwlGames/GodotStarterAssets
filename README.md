@@ -3,6 +3,7 @@ An expanding collection of high quality assets for the Godot engine made by [Niw
 
 - First person controller.
 - Third person controller.
+- Physically based ray marched sky shader.
 - SDF based customizable reticle shader.
 
 The controllers aim to be totally FPS independent and as responsive as possible. They support both Keyboard/mouse and gamepad. Camera interpolation is handled manually for the best results.

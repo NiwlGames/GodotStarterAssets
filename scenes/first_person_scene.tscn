@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://128v1jxfc43q"]
+
+[ext_resource type="Script" uid="uid://irfxipr0viof" path="res://scripts/directional_light_3d.gd" id="1_ernjw"]
+[ext_resource type="Shader" uid="uid://csletoitxmhio" path="res://shaders/sky_half.gdshader" id="1_s3id0"]
+[ext_resource type="PackedScene" uid="uid://djxd7re3uj5ud" path="res://first_person_controller/first_person_controller.tscn" id="3_ernjw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6uqi0"]
+shader = ExtResource("1_s3id0")
+shader_parameter/sun_intensity = 62.832
+shader_parameter/sun_wavelengths = Vector3(0.68, 0.55, 0.48)
+shader_parameter/rayleigh_scale_height = 8000.0
+shader_parameter/rayleigh_multi_scattering = 0.025
+shader_parameter/mie_scale_height = 1200.0
+shader_parameter/mie_scattering = 5e-06
+shader_parameter/mie_albedo = 0.9
+shader_parameter/mie_g_forward = 0.85
+shader_parameter/mie_g_backward = -0.15
+shader_parameter/mie_weight = 0.85
+shader_parameter/mie_multi_scattering = 0.3
+shader_parameter/multiscattering_mie_g_forward = 0.5
+shader_parameter/multiscattering_mie_g_backward = -0.05
+shader_parameter/multiscattering_mie_weight = 0.75
+shader_parameter/ozone_center = 25000.0
+shader_parameter/ozone_width = 30000.0
+shader_parameter/planet_radius = 6360000.0
+shader_parameter/atmosphere_height = 100000.0
+shader_parameter/base_altitude = 1000.0
+shader_parameter/ground_color = Vector3(0.12, 0.11, 0.08)
+shader_parameter/view_samples = 24
+shader_parameter/sun_samples = 8
+
+[sub_resource type="Sky" id="Sky_6uqi0"]
+sky_material = SubResource("ShaderMaterial_6uqi0")
+process_mode = 3
+
+[sub_resource type="Environment" id="Environment_6uqi0"]
+background_mode = 2
+sky = SubResource("Sky_6uqi0")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 4
+tonemap_white = 16.0
+sdfgi_use_occlusion = true
+sdfgi_y_scale = 2
+glow_levels/1 = 0.01
+glow_levels/5 = 13.8
+glow_intensity = 1.0
+glow_strength = 0.55
+glow_hdr_threshold = 2.0
+glow_hdr_scale = 4.0
+volumetric_fog_ambient_inject = 0.16
+
+[sub_resource type="Gradient" id="Gradient_6uqi0"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.025742574, 0.062222224, 0.21218488, 0.6531165, 1)
+colors = PackedColorArray(1, 0.21960784, 0, 1, 1, 0.49411765, 0, 1, 1, 0.78039217, 0.56078434, 1, 0.9529412, 0.69411767, 0.53333336, 1, 0.9285716, 0.91051644, 0.8203338, 1, 0.91764706, 0.91764706, 0.84313726, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ppyta"]
+gradient = SubResource("Gradient_6uqi0")
+width = 1024
+use_hdr = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6uqi0"]
+fractal_weighted_strength = 1.0
+
+[node name="Node3D" type="Node3D" unique_id=1627244435]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1625944820]
+environment = SubResource("Environment_6uqi0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1394278188]
+transform = Transform3D(1, 0, 0, 0, 0.7071066, 0.7071066, 0, -0.7071066, 0.7071066, 0, 0, 0)
+light_color = Color(0.9260295, 0.9232522, 0.8386856, 1)
+light_energy = 22.214409
+shadow_enabled = true
+script = ExtResource("1_ernjw")
+color_texture = SubResource("GradientTexture1D_ppyta")
+variance_texture = SubResource("FastNoiseLite_6uqi0")
+
+[node name="Floor" type="CSGCylinder3D" parent="." unique_id=1478702091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+use_collision = true
+radius = 10.0
+height = 0.8
+sides = 32
+
+[node name="Floor2" type="CSGCylinder3D" parent="Floor" unique_id=545627526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+operation = 2
+radius = 9.0
+height = 0.7
+sides = 32
+
+[node name="FirstPersonController" parent="." unique_id=1887103266 instance=ExtResource("3_ernjw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

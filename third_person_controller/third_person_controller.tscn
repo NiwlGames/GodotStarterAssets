@@ -38,6 +38,7 @@ shape = SubResource("SphereShape3D_wpuov")
 spring_length = 10.0
 
 [node name="Camera" type="Camera3D" parent="CameraGimbal/Yaw/Pitch/SpringArm"]
+current = true
 
 [node name="Body" type="Node3D" parent="."]
 editor_description = "Container node for the body mesh. 
